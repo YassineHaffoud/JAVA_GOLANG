@@ -1,0 +1,27 @@
+{
+  "name": "microservice-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2-runtime src/index.js --name todo-service",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"No tests yet\"",
+    "load-test": "k6 run k6/load-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "k6": "^0.0.0",
+    "nodemon": "^3.1.10",
+    "pm2": "^6.0.6"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/instrumentation-express": "^0.50.0",
+    "@opentelemetry/instrumentation-http": "^0.201.1",
+    "@opentelemetry/sdk-node": "^0.201.1",
+    "express": "^5.1.0"
+  }
+}
