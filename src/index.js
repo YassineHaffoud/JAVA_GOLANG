@@ -4,6 +4,7 @@ const rateLimit = require('express-rate-limit');
 const Ajv = require('ajv');
 const { initTelemetry } = require('./telemetry');
 const todosRouter = require('./routes/todos');
+const { logger } = require('./logger');
 
 // Initialize OpenTelemetry
 initTelemetry();
@@ -22,6 +23,16 @@ app.get('/health', (req, res) => res.status(200).send({ status: 'ok' }));
 app.use('/todos', todosRouter);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Todo service listening on port ${PORT}`));
-
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on('finish', () => {
+        logger.info('http_request', {
+            method: req.method,
+            url: req.originalUrl,
+            status: res.statusCode,
+            duration: Date.now() - start,
+        });
+    });
+    next();
+});
 module.exports = app; // pour les tests

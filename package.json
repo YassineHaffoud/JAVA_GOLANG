@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2-runtime src/index.js --name todo-service",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "echo \"No tests yet\"",
     "load-test": "k6 run k6/load-test.js"
@@ -14,14 +14,20 @@
   "license": "ISC",
   "devDependencies": {
     "k6": "^0.0.0",
-    "nodemon": "^3.1.10",
-    "pm2": "^6.0.6"
+    "nodemon": "^3.1.10"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/instrumentation-express": "^0.50.0",
     "@opentelemetry/instrumentation-http": "^0.201.1",
     "@opentelemetry/sdk-node": "^0.201.1",
-    "express": "^5.1.0"
+    "ajv": "^8.17.1",
+    "compression": "^1.8.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "ioredis": "^5.6.1",
+    "sqlite3": "^5.1.7",
+    "winston": "^3.17.0",
+    "bullmq": "^5.53.0"
   }
 }
