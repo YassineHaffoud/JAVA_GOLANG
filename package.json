@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "echo \"No tests yet\"",
-    "load-test": "k6 run k6/load-test.js"
+    "load-test": "docker run --rm -i --add-host host.docker.internal:host-gateway -v %cd%/k6:/scripts grafana/k6:latest run /scripts/load-test.js"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
     "ioredis": "^5.6.1",
+    "prom-client": "^15.1.3",
     "sqlite3": "^5.1.7",
     "winston": "^3.17.0"
   }
