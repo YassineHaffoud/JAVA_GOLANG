@@ -74,7 +74,7 @@ app.use('/todos', todosRouter);
 // —————— 10) Démarrage du serveur ——————
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Todo service listening on port ${PORT}`);
+  logger.info(`Todo service listening on port ${PORT}`);
 });
 
 module.exports = app;  // pour Jest / Supertest

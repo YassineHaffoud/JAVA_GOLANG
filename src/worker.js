@@ -10,7 +10,7 @@ const worker = new Worker(
     'todoQueue',
     async (job) => {
         // job.data = { id, title }
-        console.log(`Processing job ${job.id} – création tâche #${job.data.id}`);
+        logger.info(`Processing job ${job.id} – création tâche #${job.data.id}`);
         // Ici : envoi de mail, logs, notification, etc.
     },
     { connection }
@@ -18,5 +18,5 @@ const worker = new Worker(
 
 // Événements de complétion et d'erreur
 tooltip
-worker.on('completed', (job) => console.log(`Job ${job.id} done.`));
+worker.on('completed', (job) => logger.info(`Job ${job.id} done.`));
 worker.on('failed', (job, err) => console.error(`Job ${job.id} failed:`, err));
